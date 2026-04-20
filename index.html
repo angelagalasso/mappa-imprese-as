@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/filter.css">
+<link rel="stylesheet" href="css/nouislider.min.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
@@ -37,6 +39,9 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
+        <script src="js/tailDT.js"></script>
+<script src="js/nouislider.min.js"></script>
+<script src="js/wNumb.js"></script>
         <script src="data/regioni_finaliriorganizzato_1.js"></script>
         <script src="data/Abruzzo_geocoded_ai_2.js"></script>
         <script src="data/Basilicata_geocoded_ai_3.js"></script>
@@ -77,7 +82,7 @@
             highlightLayer.openPopup();
         }
         var map = L.map('map', {
-            zoomControl:false, maxZoom:28, minZoom:5
+            zoomControl:false, maxZoom:22, minZoom:5
         }).fitBounds([[35.81966182439186,6.70948763185244],[48.08852974892012,17.419487631852412]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
@@ -166,7 +171,7 @@
             opacity: 1.0,
             attribution: '',
             minZoom: 5,
-            maxZoom: 28,
+            maxZoom: 22,
             minNativeZoom: 0,
             maxNativeZoom: 19
         });
@@ -192,34 +197,12 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['COD_RIP'] !== null ? autolinker.link(String(feature.properties['COD_RIP']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['COD_REG'] !== null ? autolinker.link(String(feature.properties['COD_REG']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">DEN_REG</th>\
                         <td class="visible-with-data" id="DEN_REG">' + (feature.properties['DEN_REG'] !== null ? autolinker.link(String(feature.properties['DEN_REG']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(String(feature.properties['Shape_Leng']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(String(feature.properties['Shape_Area']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['totali_regioni_v3_regione'] !== null ? autolinker.link(String(feature.properties['totali_regioni_v3_regione']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">totali_regioni_v3_n_imprese</th>\
                         <td class="visible-with-data" id="totali_regioni_v3_n_imprese">' + (feature.properties['totali_regioni_v3_n_imprese'] !== null ? autolinker.link(String(feature.properties['totali_regioni_v3_n_imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">totali_regioni_v3_popolazione</th>\
-                        <td class="visible-with-data" id="totali_regioni_v3_popolazione">' + (feature.properties['totali_regioni_v3_popolazione'] !== null ? autolinker.link(String(feature.properties['totali_regioni_v3_popolazione']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">totali_regioni_v3_imprese_100k</th>\
@@ -348,17 +331,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -630,17 +604,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -912,17 +877,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -1194,17 +1150,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -1476,17 +1423,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N_imprese</th>\
                         <td class="visible-with-data" id="N_imprese">' + (feature.properties['N_imprese'] !== null ? autolinker.link(String(feature.properties['N_imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -1758,17 +1696,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -2040,17 +1969,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -2322,17 +2242,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -2604,17 +2515,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -2886,17 +2788,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -3168,17 +3061,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -3450,17 +3334,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -3732,17 +3607,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -4014,17 +3880,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -4296,17 +4153,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -4578,17 +4426,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2"><strong>des_ai</strong><br />' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -4858,17 +4697,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -5140,17 +4970,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -5422,17 +5243,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -5700,21 +5512,11 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">Comune</th>\
-                        <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -5986,17 +5788,8 @@
                         <td class="visible-with-data" id="Comune">' + (feature.properties['Comune'] !== null ? autolinker.link(String(feature.properties['Comune']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(String(feature.properties['lat']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['lon'] !== null ? autolinker.link(String(feature.properties['lon']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['cod_ai'] !== null ? autolinker.link(String(feature.properties['cod_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">des_ai</th>\
@@ -6297,41 +6090,188 @@
                 last.style.display = "none";
             }
         });
-        var overlaysTree = [
-            {label: 'Veneto_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Veneto_geocoded_ai_22_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Veneto_geocoded_ai_22},
-            {label: 'Valle_Aosta_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Valle_Aosta_geocoded_ai_21_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Valle_Aosta_geocoded_ai_21},
-            {label: 'Umbria_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Umbria_geocoded_ai_20_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Umbria_geocoded_ai_20},
-            {label: 'Trento_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Trento_geocoded_ai_19_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Trento_geocoded_ai_19},
-            {label: 'Toscana_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Toscana_geocoded_ai_18_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Toscana_geocoded_ai_18},
-            {label: 'Sicilia_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sicilia_geocoded_ai_17_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Sicilia_geocoded_ai_17},
-            {label: 'Sardegna_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Sardegna_geocoded_ai_16_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Sardegna_geocoded_ai_16},
-            {label: 'Puglia_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Puglia_geocoded_ai_15_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Puglia_geocoded_ai_15},
-            {label: 'Piemonte_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Piemonte_geocoded_ai_14_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Piemonte_geocoded_ai_14},
-            {label: 'Molise_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Molise_geocoded_ai_13_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Molise_geocoded_ai_13},
-            {label: 'Marche_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Marche_geocoded_ai_12_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Marche_geocoded_ai_12},
-            {label: 'Lombardia_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lombardia_geocoded_ai_11_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Lombardia_geocoded_ai_11},
-            {label: 'Liguria_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Liguria_geocoded_ai_10_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Liguria_geocoded_ai_10},
-            {label: 'Lazio_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Lazio_geocoded_ai_9_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Lazio_geocoded_ai_9},
-            {label: 'Friuli_Venezia_Giulia_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Friuli_Venezia_Giulia_geocoded_ai_8_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Friuli_Venezia_Giulia_geocoded_ai_8},
-            {label: 'Emilia_Romagna_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Emilia_Romagna_geocoded_ai_7_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Emilia_Romagna_geocoded_ai_7},
-            {label: 'Campania_geocoded_v2_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Campania_geocoded_v2_ai_6_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Campania_geocoded_v2_ai_6},
-            {label: 'Calabria_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Calabria_geocoded_ai_5_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Calabria_geocoded_ai_5},
-            {label: 'Bolzano_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Bolzano_geocoded_ai_4_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Bolzano_geocoded_ai_4},
-            {label: 'Basilicata_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Basilicata_geocoded_ai_3_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Basilicata_geocoded_ai_3},
-            {label: 'Abruzzo_geocoded_ai<br /><table><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_1impresa0.png" /></td><td>1 impresa</td></tr><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_2imprese1.png" /></td><td>2 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_3imprese2.png" /></td><td>3 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_4imprese3.png" /></td><td>4 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_5imprese4.png" /></td><td>5 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_6imprese5.png" /></td><td>6 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_7imprese6.png" /></td><td>7 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_8imprese7.png" /></td><td>8 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_9imprese8.png" /></td><td>9 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_10imprese9.png" /></td><td>10 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_11imprese10.png" /></td><td>11 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_12imprese11.png" /></td><td>12 imprese</td></tr><tr><td style="text-align: center;"><img src="legend/Abruzzo_geocoded_ai_2_13imprese12.png" /></td><td>13 imprese</td></tr></table>', layer: layer_Abruzzo_geocoded_ai_2},
-            {label: 'regioni_finali — riorganizzato<br /><table><tr><td style="text-align: center;"><img src="legend/regioni_finaliriorganizzato_1_3210.png" /></td><td>3 - 21</td></tr><tr><td style="text-align: center;"><img src="legend/regioni_finaliriorganizzato_1_21411.png" /></td><td>21 - 41</td></tr><tr><td style="text-align: center;"><img src="legend/regioni_finaliriorganizzato_1_41532.png" /></td><td>41 - 53</td></tr><tr><td style="text-align: center;"><img src="legend/regioni_finaliriorganizzato_1_53793.png" /></td><td>53 - 79</td></tr><tr><td style="text-align: center;"><img src="legend/regioni_finaliriorganizzato_1_791084.png" /></td><td>79 - 108</td></tr></table>', layer: layer_regioni_finaliriorganizzato_1},
-            {label: "OpenStreetMap", layer: layer_OpenStreetMap_0},]
-        var lay = L.control.layers.tree(null, overlaysTree,{
-            //namedToggle: true,
-            //selectorBack: false,
-            //closedSymbol: '&#8862; &#x1f5c0;',
-            //openedSymbol: '&#8863; &#x1f5c1;',
-            //collapseAll: 'Collapse all',
-            //expandAll: 'Expand all',
-            collapsed: true,
-        });
-        lay.addTo(map);
         setBounds();
+        var mapDiv = document.getElementById('map');
+        var row = document.createElement('div');
+        row.className="row";
+        row.id="all";
+        row.style.height = "100%";
+        var col1 = document.createElement('div');
+        col1.className="col9";
+        col1.id = "mapWindow";
+        col1.style.height = "99%";
+        col1.style.width = "80%";
+        col1.style.display = "inline-block";
+        var col2 = document.createElement('div');
+        col2.className="col3";
+        col2.id = "menu";
+        col2.style.display = "inline-block";
+        mapDiv.parentNode.insertBefore(row, mapDiv);
+        document.getElementById("all").appendChild(col1);
+        document.getElementById("all").appendChild(col2);
+        col1.appendChild(mapDiv)
+        var Filters = {"N. imprese": "int","totali_regioni_v3_imprese_100k": "real"};
+        function filterFunc() {
+          map.eachLayer(function(lyr){
+          if ("options" in lyr && "dataVar" in lyr["options"]){
+            features = this[lyr["options"]["dataVar"]].features.slice(0);
+            try{
+              for (key in Filters){
+                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
+                if (Filters[key] == "str" || Filters[key] == "bool"){
+                  var selection = [];
+                  var options = document.getElementById("sel_" + keyS).options
+                  for (var i=0; i < options.length; i++) {
+                    if (options[i].selected) selection.push(options[i].value);
+                  }
+                    try{
+                      if (key in features[0].properties){
+                        for (i = features.length - 1;
+                          i >= 0; --i){
+                          if (selection.indexOf(
+                          features[i].properties[key])<0
+                          && selection.length>0) {
+                          features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                  }
+                }
+                if (Filters[key] == "int"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (parseInt(features[i].properties[key])
+                          < sliderVals[0]
+                          || parseInt(features[i].properties[key])
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "real"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (features[i].properties[key]
+                          < sliderVals[0]
+                          || features[i].properties[key]
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "date"
+                  || Filters[key] == "datetime"
+                  || Filters[key] == "time"){
+                  try{
+                    if (key in features[0].properties){
+                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
+                      startdate = document.getElementById("dat_" +
+                        HTMLkey + "_date1").value.replace(" ", "T");
+                      enddate = document.getElementById("dat_" +
+                        HTMLkey + "_date2").value.replace(" ", "T");
+                      for (i = features.length - 1; i >= 0; --i){
+                        if (features[i].properties[key] < startdate
+                          || features[i].properties[key] > enddate){
+                          features.splice(i,1);
+                        }
+                      }
+                    }
+                  } catch(err){
+                  }
+                }
+              }
+            } catch(err){
+            }
+          this[lyr["options"]["layerName"]].clearLayers();
+          this[lyr["options"]["layerName"]].addData(features);
+          }
+          })
+        }
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_Nimprese = document.createElement("div");
+            div_Nimprese.id = "div_Nimprese";
+            div_Nimprese.className = "slider";
+            document.getElementById("menu").appendChild(div_Nimprese);
+            var lab_Nimprese = document.createElement('div');
+            lab_Nimprese.innerHTML  = 'N. imprese: <span id="val_Nimprese"></span>';
+            lab_Nimprese.className = 'filterlabel';
+            document.getElementById("menu").appendChild(lab_Nimprese);
+            var reset_Nimprese = document.createElement('div');
+            reset_Nimprese.innerHTML = 'clear filter';
+            reset_Nimprese.className = 'filterlabel';
+            lab_Nimprese.className = 'filterlabel';
+            reset_Nimprese.onclick = function() {
+                sel_Nimprese.noUiSlider.reset();
+            };
+            document.getElementById("menu").appendChild(reset_Nimprese);
+            var sel_Nimprese = document.getElementById('div_Nimprese');
+            noUiSlider.create(sel_Nimprese, {
+                connect: true,
+                start: [1, 13],
+                step: 1,
+                format: wNumb({
+                    decimals: 0,
+                    }),
+                range: {
+                min: 1,
+                max: 13
+                }
+            });
+            sel_Nimprese.noUiSlider.on('update', function (values) {
+            filterVals =[];
+            for (value in values){
+            filterVals.push(parseInt(value))
+            }
+            val_Nimprese = document.getElementById('val_Nimprese');
+            val_Nimprese.innerHTML = values.join(' - ');
+                filterFunc()
+            });
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_totali_regioni_v3_imprese_100k = document.createElement("div");
+            div_totali_regioni_v3_imprese_100k.id = "div_totali_regioni_v3_imprese_100k";
+            div_totali_regioni_v3_imprese_100k.className = "slider";
+            document.getElementById("menu").appendChild(div_totali_regioni_v3_imprese_100k);
+            var lab_totali_regioni_v3_imprese_100k = document.createElement('div');
+            lab_totali_regioni_v3_imprese_100k.innerHTML  = 'totali_regioni_v3_imprese_100k: <span id="val_totali_regioni_v3_imprese_100k"></span>';
+            lab_totali_regioni_v3_imprese_100k.className = 'filterlabel';
+            document.getElementById("menu").appendChild(lab_totali_regioni_v3_imprese_100k);
+            var reset_totali_regioni_v3_imprese_100k = document.createElement('div');
+            reset_totali_regioni_v3_imprese_100k.innerHTML = 'clear filter';
+            reset_totali_regioni_v3_imprese_100k.className = 'filterlabel';
+            lab_totali_regioni_v3_imprese_100k.className = 'filterlabel';
+            reset_totali_regioni_v3_imprese_100k.onclick = function() {
+                sel_totali_regioni_v3_imprese_100k.noUiSlider.reset();
+            };
+            document.getElementById("menu").appendChild(reset_totali_regioni_v3_imprese_100k);
+            var sel_totali_regioni_v3_imprese_100k = document.getElementById('div_totali_regioni_v3_imprese_100k');
+            noUiSlider.create(sel_totali_regioni_v3_imprese_100k, {
+                connect: true,
+                start: [0.85, 4.5],
+                range: {
+                min: 0.85,
+                max: 4.5
+                }
+            });
+            sel_totali_regioni_v3_imprese_100k.noUiSlider.on('update', function (values) {
+            val_totali_regioni_v3_imprese_100k = document.getElementById('val_totali_regioni_v3_imprese_100k');
+            val_totali_regioni_v3_imprese_100k.innerHTML = values.join(' - ');
+                filterFunc()
+            });
         resetLabels([layer_Veneto_geocoded_ai_22]);
         map.on("zoomend", function(){
             resetLabels([layer_Veneto_geocoded_ai_22]);
