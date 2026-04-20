@@ -10,8 +10,6 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/filter.css">
-<link rel="stylesheet" href="css/nouislider.min.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
@@ -39,31 +37,28 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="js/tailDT.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/wNumb.js"></script>
         <script src="data/regioni_finaliriorganizzato_1.js"></script>
-        <script src="data/Abruzzo_geocoded_ai_2.js"></script>
-        <script src="data/Basilicata_geocoded_ai_3.js"></script>
-        <script src="data/Bolzano_geocoded_ai_4.js"></script>
-        <script src="data/Calabria_geocoded_ai_5.js"></script>
-        <script src="data/Campania_geocoded_v2_ai_6.js"></script>
-        <script src="data/Emilia_Romagna_geocoded_ai_7.js"></script>
-        <script src="data/Friuli_Venezia_Giulia_geocoded_ai_8.js"></script>
-        <script src="data/Lazio_geocoded_ai_9.js"></script>
-        <script src="data/Liguria_geocoded_ai_10.js"></script>
-        <script src="data/Lombardia_geocoded_ai_11.js"></script>
-        <script src="data/Marche_geocoded_ai_12.js"></script>
-        <script src="data/Molise_geocoded_ai_13.js"></script>
-        <script src="data/Piemonte_geocoded_ai_14.js"></script>
-        <script src="data/Puglia_geocoded_ai_15.js"></script>
-        <script src="data/Sardegna_geocoded_ai_16.js"></script>
-        <script src="data/Sicilia_geocoded_ai_17.js"></script>
-        <script src="data/Toscana_geocoded_ai_18.js"></script>
-        <script src="data/Trento_geocoded_ai_19.js"></script>
-        <script src="data/Umbria_geocoded_ai_20.js"></script>
-        <script src="data/Valle_Aosta_geocoded_ai_21.js"></script>
-        <script src="data/Veneto_geocoded_ai_22.js"></script>
+        <script src="data/Abruzzo_2.js"></script>
+        <script src="data/Basilicata_3.js"></script>
+        <script src="data/Bolzano_4.js"></script>
+        <script src="data/Calabria_5.js"></script>
+        <script src="data/Campania_6.js"></script>
+        <script src="data/EmiliaRomagna_7.js"></script>
+        <script src="data/FriuliVeneziaGiulia_8.js"></script>
+        <script src="data/Lazio_9.js"></script>
+        <script src="data/Liguria_10.js"></script>
+        <script src="data/Lombardia_11.js"></script>
+        <script src="data/Marche_12.js"></script>
+        <script src="data/Molise_13.js"></script>
+        <script src="data/Piemonte_14.js"></script>
+        <script src="data/Puglia_15.js"></script>
+        <script src="data/Sardegna_16.js"></script>
+        <script src="data/Sicilia_17.js"></script>
+        <script src="data/Toscana_18.js"></script>
+        <script src="data/Trento_19.js"></script>
+        <script src="data/Umbria_20.js"></script>
+        <script src="data/ValledAosta_21.js"></script>
+        <script src="data/Veneto_22.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -83,7 +78,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:22, minZoom:5
-        }).fitBounds([[35.81966182439186,6.70948763185244],[48.08852974892012,17.419487631852412]]);
+        }).fitBounds([[37.59638578665588,5.425019828977514],[46.3118057866561,18.703955434727337]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -197,15 +192,15 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">DEN_REG</th>\
+                        <th scope="row">Regione</th>\
                         <td class="visible-with-data" id="DEN_REG">' + (feature.properties['DEN_REG'] !== null ? autolinker.link(String(feature.properties['DEN_REG']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">totali_regioni_v3_n_imprese</th>\
+                        <th scope="row">N. imprese</th>\
                         <td class="visible-with-data" id="totali_regioni_v3_n_imprese">' + (feature.properties['totali_regioni_v3_n_imprese'] !== null ? autolinker.link(String(feature.properties['totali_regioni_v3_n_imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">totali_regioni_v3_imprese_100k</th>\
+                        <th scope="row">Imprese per 100.000 ab.</th>\
                         <td class="visible-with-data" id="totali_regioni_v3_imprese_100k">' + (feature.properties['totali_regioni_v3_imprese_100k'] !== null ? autolinker.link(String(feature.properties['totali_regioni_v3_imprese_100k']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -307,7 +302,7 @@
         });
         bounds_group.addLayer(layer_regioni_finaliriorganizzato_1);
         map.addLayer(layer_regioni_finaliriorganizzato_1);
-        function pop_Abruzzo_geocoded_ai_2(feature, layer) {
+        function pop_Abruzzo_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -335,11 +330,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -350,10 +345,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Abruzzo_geocoded_ai_2_0(feature) {
+        function style_Abruzzo_2_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -369,7 +364,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -385,7 +380,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -401,7 +396,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -417,7 +412,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -433,7 +428,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -449,7 +444,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -465,7 +460,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -481,7 +476,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -497,7 +492,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -513,7 +508,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -529,7 +524,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -545,7 +540,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Abruzzo_geocoded_ai_2',
+                pane: 'pane_Abruzzo_2',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(180,145,0,1.0)',
@@ -560,27 +555,27 @@
             }
             }
         }
-        map.createPane('pane_Abruzzo_geocoded_ai_2');
-        map.getPane('pane_Abruzzo_geocoded_ai_2').style.zIndex = 402;
-        map.getPane('pane_Abruzzo_geocoded_ai_2').style['mix-blend-mode'] = 'normal';
-        var layer_Abruzzo_geocoded_ai_2 = new L.geoJson(json_Abruzzo_geocoded_ai_2, {
+        map.createPane('pane_Abruzzo_2');
+        map.getPane('pane_Abruzzo_2').style.zIndex = 402;
+        map.getPane('pane_Abruzzo_2').style['mix-blend-mode'] = 'normal';
+        var layer_Abruzzo_2 = new L.geoJson(json_Abruzzo_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Abruzzo_geocoded_ai_2',
-            layerName: 'layer_Abruzzo_geocoded_ai_2',
-            pane: 'pane_Abruzzo_geocoded_ai_2',
-            onEachFeature: pop_Abruzzo_geocoded_ai_2,
+            dataVar: 'json_Abruzzo_2',
+            layerName: 'layer_Abruzzo_2',
+            pane: 'pane_Abruzzo_2',
+            onEachFeature: pop_Abruzzo_2,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Abruzzo_geocoded_ai_2_0(feature));
+                return L.circleMarker(latlng, style_Abruzzo_2_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Abruzzo_geocoded_ai_2);
-        map.addLayer(layer_Abruzzo_geocoded_ai_2);
-        function pop_Basilicata_geocoded_ai_3(feature, layer) {
+        bounds_group.addLayer(layer_Abruzzo_2);
+        map.addLayer(layer_Abruzzo_2);
+        function pop_Basilicata_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -608,11 +603,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -623,10 +618,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Basilicata_geocoded_ai_3_0(feature) {
+        function style_Basilicata_3_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -642,7 +637,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -658,7 +653,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -674,7 +669,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -690,7 +685,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -706,7 +701,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -722,7 +717,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -738,7 +733,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -754,7 +749,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -770,7 +765,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -786,7 +781,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -802,7 +797,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -818,7 +813,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Basilicata_geocoded_ai_3',
+                pane: 'pane_Basilicata_3',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(145,50,130,1.0)',
@@ -833,27 +828,27 @@
             }
             }
         }
-        map.createPane('pane_Basilicata_geocoded_ai_3');
-        map.getPane('pane_Basilicata_geocoded_ai_3').style.zIndex = 403;
-        map.getPane('pane_Basilicata_geocoded_ai_3').style['mix-blend-mode'] = 'normal';
-        var layer_Basilicata_geocoded_ai_3 = new L.geoJson(json_Basilicata_geocoded_ai_3, {
+        map.createPane('pane_Basilicata_3');
+        map.getPane('pane_Basilicata_3').style.zIndex = 403;
+        map.getPane('pane_Basilicata_3').style['mix-blend-mode'] = 'normal';
+        var layer_Basilicata_3 = new L.geoJson(json_Basilicata_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Basilicata_geocoded_ai_3',
-            layerName: 'layer_Basilicata_geocoded_ai_3',
-            pane: 'pane_Basilicata_geocoded_ai_3',
-            onEachFeature: pop_Basilicata_geocoded_ai_3,
+            dataVar: 'json_Basilicata_3',
+            layerName: 'layer_Basilicata_3',
+            pane: 'pane_Basilicata_3',
+            onEachFeature: pop_Basilicata_3,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Basilicata_geocoded_ai_3_0(feature));
+                return L.circleMarker(latlng, style_Basilicata_3_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Basilicata_geocoded_ai_3);
-        map.addLayer(layer_Basilicata_geocoded_ai_3);
-        function pop_Bolzano_geocoded_ai_4(feature, layer) {
+        bounds_group.addLayer(layer_Basilicata_3);
+        map.addLayer(layer_Basilicata_3);
+        function pop_Bolzano_4(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -881,11 +876,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -896,10 +891,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Bolzano_geocoded_ai_4_0(feature) {
+        function style_Bolzano_4_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -915,7 +910,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -931,7 +926,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -947,7 +942,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -963,7 +958,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -979,7 +974,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -995,7 +990,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -1011,7 +1006,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -1027,7 +1022,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -1043,7 +1038,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -1059,7 +1054,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -1075,7 +1070,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -1091,7 +1086,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Bolzano_geocoded_ai_4',
+                pane: 'pane_Bolzano_4',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(0,30,100,1.0)',
@@ -1106,27 +1101,27 @@
             }
             }
         }
-        map.createPane('pane_Bolzano_geocoded_ai_4');
-        map.getPane('pane_Bolzano_geocoded_ai_4').style.zIndex = 404;
-        map.getPane('pane_Bolzano_geocoded_ai_4').style['mix-blend-mode'] = 'normal';
-        var layer_Bolzano_geocoded_ai_4 = new L.geoJson(json_Bolzano_geocoded_ai_4, {
+        map.createPane('pane_Bolzano_4');
+        map.getPane('pane_Bolzano_4').style.zIndex = 404;
+        map.getPane('pane_Bolzano_4').style['mix-blend-mode'] = 'normal';
+        var layer_Bolzano_4 = new L.geoJson(json_Bolzano_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Bolzano_geocoded_ai_4',
-            layerName: 'layer_Bolzano_geocoded_ai_4',
-            pane: 'pane_Bolzano_geocoded_ai_4',
-            onEachFeature: pop_Bolzano_geocoded_ai_4,
+            dataVar: 'json_Bolzano_4',
+            layerName: 'layer_Bolzano_4',
+            pane: 'pane_Bolzano_4',
+            onEachFeature: pop_Bolzano_4,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Bolzano_geocoded_ai_4_0(feature));
+                return L.circleMarker(latlng, style_Bolzano_4_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Bolzano_geocoded_ai_4);
-        map.addLayer(layer_Bolzano_geocoded_ai_4);
-        function pop_Calabria_geocoded_ai_5(feature, layer) {
+        bounds_group.addLayer(layer_Bolzano_4);
+        map.addLayer(layer_Bolzano_4);
+        function pop_Calabria_5(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -1154,11 +1149,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -1169,10 +1164,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Calabria_geocoded_ai_5_0(feature) {
+        function style_Calabria_5_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1188,7 +1183,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1204,7 +1199,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1220,7 +1215,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1236,7 +1231,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1252,7 +1247,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1268,7 +1263,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1284,7 +1279,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1300,7 +1295,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1316,7 +1311,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1332,7 +1327,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1348,7 +1343,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1364,7 +1359,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Calabria_geocoded_ai_5',
+                pane: 'pane_Calabria_5',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(160,60,100,1.0)',
@@ -1379,27 +1374,27 @@
             }
             }
         }
-        map.createPane('pane_Calabria_geocoded_ai_5');
-        map.getPane('pane_Calabria_geocoded_ai_5').style.zIndex = 405;
-        map.getPane('pane_Calabria_geocoded_ai_5').style['mix-blend-mode'] = 'normal';
-        var layer_Calabria_geocoded_ai_5 = new L.geoJson(json_Calabria_geocoded_ai_5, {
+        map.createPane('pane_Calabria_5');
+        map.getPane('pane_Calabria_5').style.zIndex = 405;
+        map.getPane('pane_Calabria_5').style['mix-blend-mode'] = 'normal';
+        var layer_Calabria_5 = new L.geoJson(json_Calabria_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Calabria_geocoded_ai_5',
-            layerName: 'layer_Calabria_geocoded_ai_5',
-            pane: 'pane_Calabria_geocoded_ai_5',
-            onEachFeature: pop_Calabria_geocoded_ai_5,
+            dataVar: 'json_Calabria_5',
+            layerName: 'layer_Calabria_5',
+            pane: 'pane_Calabria_5',
+            onEachFeature: pop_Calabria_5,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Calabria_geocoded_ai_5_0(feature));
+                return L.circleMarker(latlng, style_Calabria_5_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Calabria_geocoded_ai_5);
-        map.addLayer(layer_Calabria_geocoded_ai_5);
-        function pop_Campania_geocoded_v2_ai_6(feature, layer) {
+        bounds_group.addLayer(layer_Calabria_5);
+        map.addLayer(layer_Calabria_5);
+        function pop_Campania_6(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -1427,11 +1422,11 @@
                         <td class="visible-with-data" id="N_imprese">' + (feature.properties['N_imprese'] !== null ? autolinker.link(String(feature.properties['N_imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -1442,10 +1437,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Campania_geocoded_v2_ai_6_0(feature) {
+        function style_Campania_6_0(feature) {
             if (feature.properties['N_imprese'] >= 0.999900 && feature.properties['N_imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1461,7 +1456,7 @@
             }
             if (feature.properties['N_imprese'] >= 1.999900 && feature.properties['N_imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1477,7 +1472,7 @@
             }
             if (feature.properties['N_imprese'] >= 2.999900 && feature.properties['N_imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1493,7 +1488,7 @@
             }
             if (feature.properties['N_imprese'] >= 3.999900 && feature.properties['N_imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1509,7 +1504,7 @@
             }
             if (feature.properties['N_imprese'] >= 4.999900 && feature.properties['N_imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1525,7 +1520,7 @@
             }
             if (feature.properties['N_imprese'] >= 5.999900 && feature.properties['N_imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1541,7 +1536,7 @@
             }
             if (feature.properties['N_imprese'] >= 6.999900 && feature.properties['N_imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1557,7 +1552,7 @@
             }
             if (feature.properties['N_imprese'] >= 7.999900 && feature.properties['N_imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1573,7 +1568,7 @@
             }
             if (feature.properties['N_imprese'] >= 8.999900 && feature.properties['N_imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1589,7 +1584,7 @@
             }
             if (feature.properties['N_imprese'] >= 9.999900 && feature.properties['N_imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1605,7 +1600,7 @@
             }
             if (feature.properties['N_imprese'] >= 10.999900 && feature.properties['N_imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1621,7 +1616,7 @@
             }
             if (feature.properties['N_imprese'] >= 11.999900 && feature.properties['N_imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1637,7 +1632,7 @@
             }
             if (feature.properties['N_imprese'] >= 12.999900 && feature.properties['N_imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Campania_geocoded_v2_ai_6',
+                pane: 'pane_Campania_6',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(170,65,0,1.0)',
@@ -1652,27 +1647,27 @@
             }
             }
         }
-        map.createPane('pane_Campania_geocoded_v2_ai_6');
-        map.getPane('pane_Campania_geocoded_v2_ai_6').style.zIndex = 406;
-        map.getPane('pane_Campania_geocoded_v2_ai_6').style['mix-blend-mode'] = 'normal';
-        var layer_Campania_geocoded_v2_ai_6 = new L.geoJson(json_Campania_geocoded_v2_ai_6, {
+        map.createPane('pane_Campania_6');
+        map.getPane('pane_Campania_6').style.zIndex = 406;
+        map.getPane('pane_Campania_6').style['mix-blend-mode'] = 'normal';
+        var layer_Campania_6 = new L.geoJson(json_Campania_6, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Campania_geocoded_v2_ai_6',
-            layerName: 'layer_Campania_geocoded_v2_ai_6',
-            pane: 'pane_Campania_geocoded_v2_ai_6',
-            onEachFeature: pop_Campania_geocoded_v2_ai_6,
+            dataVar: 'json_Campania_6',
+            layerName: 'layer_Campania_6',
+            pane: 'pane_Campania_6',
+            onEachFeature: pop_Campania_6,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Campania_geocoded_v2_ai_6_0(feature));
+                return L.circleMarker(latlng, style_Campania_6_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Campania_geocoded_v2_ai_6);
-        map.addLayer(layer_Campania_geocoded_v2_ai_6);
-        function pop_Emilia_Romagna_geocoded_ai_7(feature, layer) {
+        bounds_group.addLayer(layer_Campania_6);
+        map.addLayer(layer_Campania_6);
+        function pop_EmiliaRomagna_7(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -1700,11 +1695,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -1715,10 +1710,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Emilia_Romagna_geocoded_ai_7_0(feature) {
+        function style_EmiliaRomagna_7_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1734,7 +1729,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1750,7 +1745,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1766,7 +1761,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1782,7 +1777,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1798,7 +1793,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1814,7 +1809,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1830,7 +1825,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1846,7 +1841,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1862,7 +1857,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1878,7 +1873,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1894,7 +1889,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1910,7 +1905,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Emilia_Romagna_geocoded_ai_7',
+                pane: 'pane_EmiliaRomagna_7',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(0,80,40,1.0)',
@@ -1925,27 +1920,27 @@
             }
             }
         }
-        map.createPane('pane_Emilia_Romagna_geocoded_ai_7');
-        map.getPane('pane_Emilia_Romagna_geocoded_ai_7').style.zIndex = 407;
-        map.getPane('pane_Emilia_Romagna_geocoded_ai_7').style['mix-blend-mode'] = 'normal';
-        var layer_Emilia_Romagna_geocoded_ai_7 = new L.geoJson(json_Emilia_Romagna_geocoded_ai_7, {
+        map.createPane('pane_EmiliaRomagna_7');
+        map.getPane('pane_EmiliaRomagna_7').style.zIndex = 407;
+        map.getPane('pane_EmiliaRomagna_7').style['mix-blend-mode'] = 'normal';
+        var layer_EmiliaRomagna_7 = new L.geoJson(json_EmiliaRomagna_7, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Emilia_Romagna_geocoded_ai_7',
-            layerName: 'layer_Emilia_Romagna_geocoded_ai_7',
-            pane: 'pane_Emilia_Romagna_geocoded_ai_7',
-            onEachFeature: pop_Emilia_Romagna_geocoded_ai_7,
+            dataVar: 'json_EmiliaRomagna_7',
+            layerName: 'layer_EmiliaRomagna_7',
+            pane: 'pane_EmiliaRomagna_7',
+            onEachFeature: pop_EmiliaRomagna_7,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Emilia_Romagna_geocoded_ai_7_0(feature));
+                return L.circleMarker(latlng, style_EmiliaRomagna_7_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Emilia_Romagna_geocoded_ai_7);
-        map.addLayer(layer_Emilia_Romagna_geocoded_ai_7);
-        function pop_Friuli_Venezia_Giulia_geocoded_ai_8(feature, layer) {
+        bounds_group.addLayer(layer_EmiliaRomagna_7);
+        map.addLayer(layer_EmiliaRomagna_7);
+        function pop_FriuliVeneziaGiulia_8(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -1973,11 +1968,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Classificazione</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -1988,10 +1983,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Friuli_Venezia_Giulia_geocoded_ai_8_0(feature) {
+        function style_FriuliVeneziaGiulia_8_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2007,7 +2002,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2023,7 +2018,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2039,7 +2034,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2055,7 +2050,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2071,7 +2066,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2087,7 +2082,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2103,7 +2098,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2119,7 +2114,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2135,7 +2130,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2151,7 +2146,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2167,7 +2162,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2183,7 +2178,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
+                pane: 'pane_FriuliVeneziaGiulia_8',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(0,120,150,1.0)',
@@ -2198,27 +2193,27 @@
             }
             }
         }
-        map.createPane('pane_Friuli_Venezia_Giulia_geocoded_ai_8');
-        map.getPane('pane_Friuli_Venezia_Giulia_geocoded_ai_8').style.zIndex = 408;
-        map.getPane('pane_Friuli_Venezia_Giulia_geocoded_ai_8').style['mix-blend-mode'] = 'normal';
-        var layer_Friuli_Venezia_Giulia_geocoded_ai_8 = new L.geoJson(json_Friuli_Venezia_Giulia_geocoded_ai_8, {
+        map.createPane('pane_FriuliVeneziaGiulia_8');
+        map.getPane('pane_FriuliVeneziaGiulia_8').style.zIndex = 408;
+        map.getPane('pane_FriuliVeneziaGiulia_8').style['mix-blend-mode'] = 'normal';
+        var layer_FriuliVeneziaGiulia_8 = new L.geoJson(json_FriuliVeneziaGiulia_8, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Friuli_Venezia_Giulia_geocoded_ai_8',
-            layerName: 'layer_Friuli_Venezia_Giulia_geocoded_ai_8',
-            pane: 'pane_Friuli_Venezia_Giulia_geocoded_ai_8',
-            onEachFeature: pop_Friuli_Venezia_Giulia_geocoded_ai_8,
+            dataVar: 'json_FriuliVeneziaGiulia_8',
+            layerName: 'layer_FriuliVeneziaGiulia_8',
+            pane: 'pane_FriuliVeneziaGiulia_8',
+            onEachFeature: pop_FriuliVeneziaGiulia_8,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Friuli_Venezia_Giulia_geocoded_ai_8_0(feature));
+                return L.circleMarker(latlng, style_FriuliVeneziaGiulia_8_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Friuli_Venezia_Giulia_geocoded_ai_8);
-        map.addLayer(layer_Friuli_Venezia_Giulia_geocoded_ai_8);
-        function pop_Lazio_geocoded_ai_9(feature, layer) {
+        bounds_group.addLayer(layer_FriuliVeneziaGiulia_8);
+        map.addLayer(layer_FriuliVeneziaGiulia_8);
+        function pop_Lazio_9(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -2246,11 +2241,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -2261,10 +2256,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Lazio_geocoded_ai_9_0(feature) {
+        function style_Lazio_9_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2280,7 +2275,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2296,7 +2291,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2312,7 +2307,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2328,7 +2323,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2344,7 +2339,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2360,7 +2355,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2376,7 +2371,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2392,7 +2387,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2408,7 +2403,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2424,7 +2419,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2440,7 +2435,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2456,7 +2451,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Lazio_geocoded_ai_9',
+                pane: 'pane_Lazio_9',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(140,110,0,1.0)',
@@ -2471,27 +2466,27 @@
             }
             }
         }
-        map.createPane('pane_Lazio_geocoded_ai_9');
-        map.getPane('pane_Lazio_geocoded_ai_9').style.zIndex = 409;
-        map.getPane('pane_Lazio_geocoded_ai_9').style['mix-blend-mode'] = 'normal';
-        var layer_Lazio_geocoded_ai_9 = new L.geoJson(json_Lazio_geocoded_ai_9, {
+        map.createPane('pane_Lazio_9');
+        map.getPane('pane_Lazio_9').style.zIndex = 409;
+        map.getPane('pane_Lazio_9').style['mix-blend-mode'] = 'normal';
+        var layer_Lazio_9 = new L.geoJson(json_Lazio_9, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Lazio_geocoded_ai_9',
-            layerName: 'layer_Lazio_geocoded_ai_9',
-            pane: 'pane_Lazio_geocoded_ai_9',
-            onEachFeature: pop_Lazio_geocoded_ai_9,
+            dataVar: 'json_Lazio_9',
+            layerName: 'layer_Lazio_9',
+            pane: 'pane_Lazio_9',
+            onEachFeature: pop_Lazio_9,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Lazio_geocoded_ai_9_0(feature));
+                return L.circleMarker(latlng, style_Lazio_9_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Lazio_geocoded_ai_9);
-        map.addLayer(layer_Lazio_geocoded_ai_9);
-        function pop_Liguria_geocoded_ai_10(feature, layer) {
+        bounds_group.addLayer(layer_Lazio_9);
+        map.addLayer(layer_Lazio_9);
+        function pop_Liguria_10(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -2519,11 +2514,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -2534,10 +2529,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Liguria_geocoded_ai_10_0(feature) {
+        function style_Liguria_10_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2553,7 +2548,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2569,7 +2564,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2585,7 +2580,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2601,7 +2596,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2617,7 +2612,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2633,7 +2628,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2649,7 +2644,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2665,7 +2660,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2681,7 +2676,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2697,7 +2692,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2713,7 +2708,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2729,7 +2724,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Liguria_geocoded_ai_10',
+                pane: 'pane_Liguria_10',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(140,55,0,1.0)',
@@ -2744,27 +2739,27 @@
             }
             }
         }
-        map.createPane('pane_Liguria_geocoded_ai_10');
-        map.getPane('pane_Liguria_geocoded_ai_10').style.zIndex = 410;
-        map.getPane('pane_Liguria_geocoded_ai_10').style['mix-blend-mode'] = 'normal';
-        var layer_Liguria_geocoded_ai_10 = new L.geoJson(json_Liguria_geocoded_ai_10, {
+        map.createPane('pane_Liguria_10');
+        map.getPane('pane_Liguria_10').style.zIndex = 410;
+        map.getPane('pane_Liguria_10').style['mix-blend-mode'] = 'normal';
+        var layer_Liguria_10 = new L.geoJson(json_Liguria_10, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Liguria_geocoded_ai_10',
-            layerName: 'layer_Liguria_geocoded_ai_10',
-            pane: 'pane_Liguria_geocoded_ai_10',
-            onEachFeature: pop_Liguria_geocoded_ai_10,
+            dataVar: 'json_Liguria_10',
+            layerName: 'layer_Liguria_10',
+            pane: 'pane_Liguria_10',
+            onEachFeature: pop_Liguria_10,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Liguria_geocoded_ai_10_0(feature));
+                return L.circleMarker(latlng, style_Liguria_10_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Liguria_geocoded_ai_10);
-        map.addLayer(layer_Liguria_geocoded_ai_10);
-        function pop_Lombardia_geocoded_ai_11(feature, layer) {
+        bounds_group.addLayer(layer_Liguria_10);
+        map.addLayer(layer_Liguria_10);
+        function pop_Lombardia_11(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -2792,11 +2787,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -2807,10 +2802,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Lombardia_geocoded_ai_11_0(feature) {
+        function style_Lombardia_11_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -2826,7 +2821,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -2842,7 +2837,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -2858,7 +2853,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -2874,7 +2869,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -2890,7 +2885,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -2906,7 +2901,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -2922,7 +2917,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -2938,7 +2933,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -2954,7 +2949,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -2970,7 +2965,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -2986,7 +2981,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -3002,7 +2997,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Lombardia_geocoded_ai_11',
+                pane: 'pane_Lombardia_11',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(160,10,10,1.0)',
@@ -3017,27 +3012,27 @@
             }
             }
         }
-        map.createPane('pane_Lombardia_geocoded_ai_11');
-        map.getPane('pane_Lombardia_geocoded_ai_11').style.zIndex = 411;
-        map.getPane('pane_Lombardia_geocoded_ai_11').style['mix-blend-mode'] = 'normal';
-        var layer_Lombardia_geocoded_ai_11 = new L.geoJson(json_Lombardia_geocoded_ai_11, {
+        map.createPane('pane_Lombardia_11');
+        map.getPane('pane_Lombardia_11').style.zIndex = 411;
+        map.getPane('pane_Lombardia_11').style['mix-blend-mode'] = 'normal';
+        var layer_Lombardia_11 = new L.geoJson(json_Lombardia_11, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Lombardia_geocoded_ai_11',
-            layerName: 'layer_Lombardia_geocoded_ai_11',
-            pane: 'pane_Lombardia_geocoded_ai_11',
-            onEachFeature: pop_Lombardia_geocoded_ai_11,
+            dataVar: 'json_Lombardia_11',
+            layerName: 'layer_Lombardia_11',
+            pane: 'pane_Lombardia_11',
+            onEachFeature: pop_Lombardia_11,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Lombardia_geocoded_ai_11_0(feature));
+                return L.circleMarker(latlng, style_Lombardia_11_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Lombardia_geocoded_ai_11);
-        map.addLayer(layer_Lombardia_geocoded_ai_11);
-        function pop_Marche_geocoded_ai_12(feature, layer) {
+        bounds_group.addLayer(layer_Lombardia_11);
+        map.addLayer(layer_Lombardia_11);
+        function pop_Marche_12(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -3065,11 +3060,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -3080,10 +3075,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Marche_geocoded_ai_12_0(feature) {
+        function style_Marche_12_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3099,7 +3094,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3115,7 +3110,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3131,7 +3126,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3147,7 +3142,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3163,7 +3158,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3179,7 +3174,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3195,7 +3190,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3211,7 +3206,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3227,7 +3222,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3243,7 +3238,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3259,7 +3254,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3275,7 +3270,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Marche_geocoded_ai_12',
+                pane: 'pane_Marche_12',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(30,130,50,1.0)',
@@ -3290,27 +3285,27 @@
             }
             }
         }
-        map.createPane('pane_Marche_geocoded_ai_12');
-        map.getPane('pane_Marche_geocoded_ai_12').style.zIndex = 412;
-        map.getPane('pane_Marche_geocoded_ai_12').style['mix-blend-mode'] = 'normal';
-        var layer_Marche_geocoded_ai_12 = new L.geoJson(json_Marche_geocoded_ai_12, {
+        map.createPane('pane_Marche_12');
+        map.getPane('pane_Marche_12').style.zIndex = 412;
+        map.getPane('pane_Marche_12').style['mix-blend-mode'] = 'normal';
+        var layer_Marche_12 = new L.geoJson(json_Marche_12, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Marche_geocoded_ai_12',
-            layerName: 'layer_Marche_geocoded_ai_12',
-            pane: 'pane_Marche_geocoded_ai_12',
-            onEachFeature: pop_Marche_geocoded_ai_12,
+            dataVar: 'json_Marche_12',
+            layerName: 'layer_Marche_12',
+            pane: 'pane_Marche_12',
+            onEachFeature: pop_Marche_12,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Marche_geocoded_ai_12_0(feature));
+                return L.circleMarker(latlng, style_Marche_12_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Marche_geocoded_ai_12);
-        map.addLayer(layer_Marche_geocoded_ai_12);
-        function pop_Molise_geocoded_ai_13(feature, layer) {
+        bounds_group.addLayer(layer_Marche_12);
+        map.addLayer(layer_Marche_12);
+        function pop_Molise_13(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -3338,11 +3333,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -3353,10 +3348,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Molise_geocoded_ai_13_0(feature) {
+        function style_Molise_13_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3372,7 +3367,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3388,7 +3383,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3404,7 +3399,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3420,7 +3415,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3436,7 +3431,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3452,7 +3447,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3468,7 +3463,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3484,7 +3479,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3500,7 +3495,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3516,7 +3511,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3532,7 +3527,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3548,7 +3543,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Molise_geocoded_ai_13',
+                pane: 'pane_Molise_13',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(120,160,50,1.0)',
@@ -3563,27 +3558,27 @@
             }
             }
         }
-        map.createPane('pane_Molise_geocoded_ai_13');
-        map.getPane('pane_Molise_geocoded_ai_13').style.zIndex = 413;
-        map.getPane('pane_Molise_geocoded_ai_13').style['mix-blend-mode'] = 'normal';
-        var layer_Molise_geocoded_ai_13 = new L.geoJson(json_Molise_geocoded_ai_13, {
+        map.createPane('pane_Molise_13');
+        map.getPane('pane_Molise_13').style.zIndex = 413;
+        map.getPane('pane_Molise_13').style['mix-blend-mode'] = 'normal';
+        var layer_Molise_13 = new L.geoJson(json_Molise_13, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Molise_geocoded_ai_13',
-            layerName: 'layer_Molise_geocoded_ai_13',
-            pane: 'pane_Molise_geocoded_ai_13',
-            onEachFeature: pop_Molise_geocoded_ai_13,
+            dataVar: 'json_Molise_13',
+            layerName: 'layer_Molise_13',
+            pane: 'pane_Molise_13',
+            onEachFeature: pop_Molise_13,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Molise_geocoded_ai_13_0(feature));
+                return L.circleMarker(latlng, style_Molise_13_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Molise_geocoded_ai_13);
-        map.addLayer(layer_Molise_geocoded_ai_13);
-        function pop_Piemonte_geocoded_ai_14(feature, layer) {
+        bounds_group.addLayer(layer_Molise_13);
+        map.addLayer(layer_Molise_13);
+        function pop_Piemonte_14(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -3611,11 +3606,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -3626,10 +3621,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Piemonte_geocoded_ai_14_0(feature) {
+        function style_Piemonte_14_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3645,7 +3640,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3661,7 +3656,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3677,7 +3672,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3693,7 +3688,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3709,7 +3704,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3725,7 +3720,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3741,7 +3736,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3757,7 +3752,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3773,7 +3768,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3789,7 +3784,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3805,7 +3800,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3821,7 +3816,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Piemonte_geocoded_ai_14',
+                pane: 'pane_Piemonte_14',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(93,0,38,1.0)',
@@ -3836,27 +3831,27 @@
             }
             }
         }
-        map.createPane('pane_Piemonte_geocoded_ai_14');
-        map.getPane('pane_Piemonte_geocoded_ai_14').style.zIndex = 414;
-        map.getPane('pane_Piemonte_geocoded_ai_14').style['mix-blend-mode'] = 'normal';
-        var layer_Piemonte_geocoded_ai_14 = new L.geoJson(json_Piemonte_geocoded_ai_14, {
+        map.createPane('pane_Piemonte_14');
+        map.getPane('pane_Piemonte_14').style.zIndex = 414;
+        map.getPane('pane_Piemonte_14').style['mix-blend-mode'] = 'normal';
+        var layer_Piemonte_14 = new L.geoJson(json_Piemonte_14, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Piemonte_geocoded_ai_14',
-            layerName: 'layer_Piemonte_geocoded_ai_14',
-            pane: 'pane_Piemonte_geocoded_ai_14',
-            onEachFeature: pop_Piemonte_geocoded_ai_14,
+            dataVar: 'json_Piemonte_14',
+            layerName: 'layer_Piemonte_14',
+            pane: 'pane_Piemonte_14',
+            onEachFeature: pop_Piemonte_14,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Piemonte_geocoded_ai_14_0(feature));
+                return L.circleMarker(latlng, style_Piemonte_14_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Piemonte_geocoded_ai_14);
-        map.addLayer(layer_Piemonte_geocoded_ai_14);
-        function pop_Puglia_geocoded_ai_15(feature, layer) {
+        bounds_group.addLayer(layer_Piemonte_14);
+        map.addLayer(layer_Piemonte_14);
+        function pop_Puglia_15(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -3884,11 +3879,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -3899,10 +3894,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Puglia_geocoded_ai_15_0(feature) {
+        function style_Puglia_15_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -3918,7 +3913,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -3934,7 +3929,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -3950,7 +3945,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -3966,7 +3961,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -3982,7 +3977,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -3998,7 +3993,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -4014,7 +4009,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -4030,7 +4025,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -4046,7 +4041,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -4062,7 +4057,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -4078,7 +4073,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -4094,7 +4089,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Puglia_geocoded_ai_15',
+                pane: 'pane_Puglia_15',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(80,0,130,1.0)',
@@ -4109,27 +4104,27 @@
             }
             }
         }
-        map.createPane('pane_Puglia_geocoded_ai_15');
-        map.getPane('pane_Puglia_geocoded_ai_15').style.zIndex = 415;
-        map.getPane('pane_Puglia_geocoded_ai_15').style['mix-blend-mode'] = 'normal';
-        var layer_Puglia_geocoded_ai_15 = new L.geoJson(json_Puglia_geocoded_ai_15, {
+        map.createPane('pane_Puglia_15');
+        map.getPane('pane_Puglia_15').style.zIndex = 415;
+        map.getPane('pane_Puglia_15').style['mix-blend-mode'] = 'normal';
+        var layer_Puglia_15 = new L.geoJson(json_Puglia_15, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Puglia_geocoded_ai_15',
-            layerName: 'layer_Puglia_geocoded_ai_15',
-            pane: 'pane_Puglia_geocoded_ai_15',
-            onEachFeature: pop_Puglia_geocoded_ai_15,
+            dataVar: 'json_Puglia_15',
+            layerName: 'layer_Puglia_15',
+            pane: 'pane_Puglia_15',
+            onEachFeature: pop_Puglia_15,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Puglia_geocoded_ai_15_0(feature));
+                return L.circleMarker(latlng, style_Puglia_15_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Puglia_geocoded_ai_15);
-        map.addLayer(layer_Puglia_geocoded_ai_15);
-        function pop_Sardegna_geocoded_ai_16(feature, layer) {
+        bounds_group.addLayer(layer_Puglia_15);
+        map.addLayer(layer_Puglia_15);
+        function pop_Sardegna_16(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -4157,11 +4152,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -4172,10 +4167,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Sardegna_geocoded_ai_16_0(feature) {
+        function style_Sardegna_16_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4191,7 +4186,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4207,7 +4202,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4223,7 +4218,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4239,7 +4234,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4255,7 +4250,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4271,7 +4266,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4287,7 +4282,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4303,7 +4298,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4319,7 +4314,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4335,7 +4330,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4351,7 +4346,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4367,7 +4362,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Sardegna_geocoded_ai_16',
+                pane: 'pane_Sardegna_16',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(120,85,45,1.0)',
@@ -4382,27 +4377,27 @@
             }
             }
         }
-        map.createPane('pane_Sardegna_geocoded_ai_16');
-        map.getPane('pane_Sardegna_geocoded_ai_16').style.zIndex = 416;
-        map.getPane('pane_Sardegna_geocoded_ai_16').style['mix-blend-mode'] = 'normal';
-        var layer_Sardegna_geocoded_ai_16 = new L.geoJson(json_Sardegna_geocoded_ai_16, {
+        map.createPane('pane_Sardegna_16');
+        map.getPane('pane_Sardegna_16').style.zIndex = 416;
+        map.getPane('pane_Sardegna_16').style['mix-blend-mode'] = 'normal';
+        var layer_Sardegna_16 = new L.geoJson(json_Sardegna_16, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Sardegna_geocoded_ai_16',
-            layerName: 'layer_Sardegna_geocoded_ai_16',
-            pane: 'pane_Sardegna_geocoded_ai_16',
-            onEachFeature: pop_Sardegna_geocoded_ai_16,
+            dataVar: 'json_Sardegna_16',
+            layerName: 'layer_Sardegna_16',
+            pane: 'pane_Sardegna_16',
+            onEachFeature: pop_Sardegna_16,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Sardegna_geocoded_ai_16_0(feature));
+                return L.circleMarker(latlng, style_Sardegna_16_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Sardegna_geocoded_ai_16);
-        map.addLayer(layer_Sardegna_geocoded_ai_16);
-        function pop_Sicilia_geocoded_ai_17(feature, layer) {
+        bounds_group.addLayer(layer_Sardegna_16);
+        map.addLayer(layer_Sardegna_16);
+        function pop_Sicilia_17(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -4430,10 +4425,10 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>des_ai</strong><br />' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>Classe Comune</strong><br />' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td class="visible-with-data" id="categoria" colspan="2"><strong>categoria</strong><br />' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="categoria" colspan="2"><strong>Cluster</strong><br />' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -4443,10 +4438,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Sicilia_geocoded_ai_17_0(feature) {
+        function style_Sicilia_17_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4462,7 +4457,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4478,7 +4473,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4494,7 +4489,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4510,7 +4505,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4526,7 +4521,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4542,7 +4537,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4558,7 +4553,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4574,7 +4569,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4590,7 +4585,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4606,7 +4601,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4622,7 +4617,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4638,7 +4633,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Sicilia_geocoded_ai_17',
+                pane: 'pane_Sicilia_17',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(80,35,0,1.0)',
@@ -4653,27 +4648,27 @@
             }
             }
         }
-        map.createPane('pane_Sicilia_geocoded_ai_17');
-        map.getPane('pane_Sicilia_geocoded_ai_17').style.zIndex = 417;
-        map.getPane('pane_Sicilia_geocoded_ai_17').style['mix-blend-mode'] = 'normal';
-        var layer_Sicilia_geocoded_ai_17 = new L.geoJson(json_Sicilia_geocoded_ai_17, {
+        map.createPane('pane_Sicilia_17');
+        map.getPane('pane_Sicilia_17').style.zIndex = 417;
+        map.getPane('pane_Sicilia_17').style['mix-blend-mode'] = 'normal';
+        var layer_Sicilia_17 = new L.geoJson(json_Sicilia_17, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Sicilia_geocoded_ai_17',
-            layerName: 'layer_Sicilia_geocoded_ai_17',
-            pane: 'pane_Sicilia_geocoded_ai_17',
-            onEachFeature: pop_Sicilia_geocoded_ai_17,
+            dataVar: 'json_Sicilia_17',
+            layerName: 'layer_Sicilia_17',
+            pane: 'pane_Sicilia_17',
+            onEachFeature: pop_Sicilia_17,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Sicilia_geocoded_ai_17_0(feature));
+                return L.circleMarker(latlng, style_Sicilia_17_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Sicilia_geocoded_ai_17);
-        map.addLayer(layer_Sicilia_geocoded_ai_17);
-        function pop_Toscana_geocoded_ai_18(feature, layer) {
+        bounds_group.addLayer(layer_Sicilia_17);
+        map.addLayer(layer_Sicilia_17);
+        function pop_Toscana_18(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -4701,11 +4696,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -4716,10 +4711,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Toscana_geocoded_ai_18_0(feature) {
+        function style_Toscana_18_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4735,7 +4730,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4751,7 +4746,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4767,7 +4762,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4783,7 +4778,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4799,7 +4794,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4815,7 +4810,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4831,7 +4826,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4847,7 +4842,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4863,7 +4858,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4879,7 +4874,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4895,7 +4890,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4911,7 +4906,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Toscana_geocoded_ai_18',
+                pane: 'pane_Toscana_18',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(65,110,0,1.0)',
@@ -4926,27 +4921,27 @@
             }
             }
         }
-        map.createPane('pane_Toscana_geocoded_ai_18');
-        map.getPane('pane_Toscana_geocoded_ai_18').style.zIndex = 418;
-        map.getPane('pane_Toscana_geocoded_ai_18').style['mix-blend-mode'] = 'normal';
-        var layer_Toscana_geocoded_ai_18 = new L.geoJson(json_Toscana_geocoded_ai_18, {
+        map.createPane('pane_Toscana_18');
+        map.getPane('pane_Toscana_18').style.zIndex = 418;
+        map.getPane('pane_Toscana_18').style['mix-blend-mode'] = 'normal';
+        var layer_Toscana_18 = new L.geoJson(json_Toscana_18, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Toscana_geocoded_ai_18',
-            layerName: 'layer_Toscana_geocoded_ai_18',
-            pane: 'pane_Toscana_geocoded_ai_18',
-            onEachFeature: pop_Toscana_geocoded_ai_18,
+            dataVar: 'json_Toscana_18',
+            layerName: 'layer_Toscana_18',
+            pane: 'pane_Toscana_18',
+            onEachFeature: pop_Toscana_18,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Toscana_geocoded_ai_18_0(feature));
+                return L.circleMarker(latlng, style_Toscana_18_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Toscana_geocoded_ai_18);
-        map.addLayer(layer_Toscana_geocoded_ai_18);
-        function pop_Trento_geocoded_ai_19(feature, layer) {
+        bounds_group.addLayer(layer_Toscana_18);
+        map.addLayer(layer_Toscana_18);
+        function pop_Trento_19(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -4974,11 +4969,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -4989,10 +4984,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Trento_geocoded_ai_19_0(feature) {
+        function style_Trento_19_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5008,7 +5003,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5024,7 +5019,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5040,7 +5035,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5056,7 +5051,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5072,7 +5067,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5088,7 +5083,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5104,7 +5099,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5120,7 +5115,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5136,7 +5131,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5152,7 +5147,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5168,7 +5163,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5184,7 +5179,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Trento_geocoded_ai_19',
+                pane: 'pane_Trento_19',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(15,65,140,1.0)',
@@ -5199,27 +5194,27 @@
             }
             }
         }
-        map.createPane('pane_Trento_geocoded_ai_19');
-        map.getPane('pane_Trento_geocoded_ai_19').style.zIndex = 419;
-        map.getPane('pane_Trento_geocoded_ai_19').style['mix-blend-mode'] = 'normal';
-        var layer_Trento_geocoded_ai_19 = new L.geoJson(json_Trento_geocoded_ai_19, {
+        map.createPane('pane_Trento_19');
+        map.getPane('pane_Trento_19').style.zIndex = 419;
+        map.getPane('pane_Trento_19').style['mix-blend-mode'] = 'normal';
+        var layer_Trento_19 = new L.geoJson(json_Trento_19, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Trento_geocoded_ai_19',
-            layerName: 'layer_Trento_geocoded_ai_19',
-            pane: 'pane_Trento_geocoded_ai_19',
-            onEachFeature: pop_Trento_geocoded_ai_19,
+            dataVar: 'json_Trento_19',
+            layerName: 'layer_Trento_19',
+            pane: 'pane_Trento_19',
+            onEachFeature: pop_Trento_19,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Trento_geocoded_ai_19_0(feature));
+                return L.circleMarker(latlng, style_Trento_19_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Trento_geocoded_ai_19);
-        map.addLayer(layer_Trento_geocoded_ai_19);
-        function pop_Umbria_geocoded_ai_20(feature, layer) {
+        bounds_group.addLayer(layer_Trento_19);
+        map.addLayer(layer_Trento_19);
+        function pop_Umbria_20(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -5247,11 +5242,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -5262,10 +5257,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Umbria_geocoded_ai_20_0(feature) {
+        function style_Umbria_20_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5281,7 +5276,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5297,7 +5292,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5313,7 +5308,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5329,7 +5324,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5345,7 +5340,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5361,7 +5356,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5377,7 +5372,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5393,7 +5388,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5409,7 +5404,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5425,7 +5420,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5441,7 +5436,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5457,7 +5452,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Umbria_geocoded_ai_20',
+                pane: 'pane_Umbria_20',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(110,150,30,1.0)',
@@ -5472,27 +5467,27 @@
             }
             }
         }
-        map.createPane('pane_Umbria_geocoded_ai_20');
-        map.getPane('pane_Umbria_geocoded_ai_20').style.zIndex = 420;
-        map.getPane('pane_Umbria_geocoded_ai_20').style['mix-blend-mode'] = 'normal';
-        var layer_Umbria_geocoded_ai_20 = new L.geoJson(json_Umbria_geocoded_ai_20, {
+        map.createPane('pane_Umbria_20');
+        map.getPane('pane_Umbria_20').style.zIndex = 420;
+        map.getPane('pane_Umbria_20').style['mix-blend-mode'] = 'normal';
+        var layer_Umbria_20 = new L.geoJson(json_Umbria_20, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Umbria_geocoded_ai_20',
-            layerName: 'layer_Umbria_geocoded_ai_20',
-            pane: 'pane_Umbria_geocoded_ai_20',
-            onEachFeature: pop_Umbria_geocoded_ai_20,
+            dataVar: 'json_Umbria_20',
+            layerName: 'layer_Umbria_20',
+            pane: 'pane_Umbria_20',
+            onEachFeature: pop_Umbria_20,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Umbria_geocoded_ai_20_0(feature));
+                return L.circleMarker(latlng, style_Umbria_20_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Umbria_geocoded_ai_20);
-        map.addLayer(layer_Umbria_geocoded_ai_20);
-        function pop_Valle_Aosta_geocoded_ai_21(feature, layer) {
+        bounds_group.addLayer(layer_Umbria_20);
+        map.addLayer(layer_Umbria_20);
+        function pop_ValledAosta_21(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -5519,11 +5514,11 @@
                         <td class="visible-with-data" id="N. imprese">' + (feature.properties['N. imprese'] !== null ? autolinker.link(String(feature.properties['N. imprese']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">des_ai</th>\
+                        <th scope="row">Classe Comune</th>\
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -5534,10 +5529,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Valle_Aosta_geocoded_ai_21_0(feature) {
+        function style_ValledAosta_21_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5553,7 +5548,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5569,7 +5564,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5585,7 +5580,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5601,7 +5596,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5617,7 +5612,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5633,7 +5628,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5649,7 +5644,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5665,7 +5660,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5681,7 +5676,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5697,7 +5692,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5713,7 +5708,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5729,7 +5724,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Valle_Aosta_geocoded_ai_21',
+                pane: 'pane_ValledAosta_21',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(120,30,60,1.0)',
@@ -5744,27 +5739,27 @@
             }
             }
         }
-        map.createPane('pane_Valle_Aosta_geocoded_ai_21');
-        map.getPane('pane_Valle_Aosta_geocoded_ai_21').style.zIndex = 421;
-        map.getPane('pane_Valle_Aosta_geocoded_ai_21').style['mix-blend-mode'] = 'normal';
-        var layer_Valle_Aosta_geocoded_ai_21 = new L.geoJson(json_Valle_Aosta_geocoded_ai_21, {
+        map.createPane('pane_ValledAosta_21');
+        map.getPane('pane_ValledAosta_21').style.zIndex = 421;
+        map.getPane('pane_ValledAosta_21').style['mix-blend-mode'] = 'normal';
+        var layer_ValledAosta_21 = new L.geoJson(json_ValledAosta_21, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Valle_Aosta_geocoded_ai_21',
-            layerName: 'layer_Valle_Aosta_geocoded_ai_21',
-            pane: 'pane_Valle_Aosta_geocoded_ai_21',
-            onEachFeature: pop_Valle_Aosta_geocoded_ai_21,
+            dataVar: 'json_ValledAosta_21',
+            layerName: 'layer_ValledAosta_21',
+            pane: 'pane_ValledAosta_21',
+            onEachFeature: pop_ValledAosta_21,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Valle_Aosta_geocoded_ai_21_0(feature));
+                return L.circleMarker(latlng, style_ValledAosta_21_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Valle_Aosta_geocoded_ai_21);
-        map.addLayer(layer_Valle_Aosta_geocoded_ai_21);
-        function pop_Veneto_geocoded_ai_22(feature, layer) {
+        bounds_group.addLayer(layer_ValledAosta_21);
+        map.addLayer(layer_ValledAosta_21);
+        function pop_Veneto_22(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -5796,7 +5791,7 @@
                         <td class="visible-with-data" id="des_ai">' + (feature.properties['des_ai'] !== null ? autolinker.link(String(feature.properties['des_ai']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">categoria</th>\
+                        <th scope="row">Cluster</th>\
                         <td class="visible-with-data" id="categoria">' + (feature.properties['categoria'] !== null ? autolinker.link(String(feature.properties['categoria']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -5807,10 +5802,10 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Veneto_geocoded_ai_22_0(feature) {
+        function style_Veneto_22_0(feature) {
             if (feature.properties['N. imprese'] >= 0.999900 && feature.properties['N. imprese'] <= 1.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -5826,7 +5821,7 @@
             }
             if (feature.properties['N. imprese'] >= 1.999900 && feature.properties['N. imprese'] <= 2.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 5.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -5842,7 +5837,7 @@
             }
             if (feature.properties['N. imprese'] >= 2.999900 && feature.properties['N. imprese'] <= 3.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 6.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -5858,7 +5853,7 @@
             }
             if (feature.properties['N. imprese'] >= 3.999900 && feature.properties['N. imprese'] <= 4.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 7.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -5874,7 +5869,7 @@
             }
             if (feature.properties['N. imprese'] >= 4.999900 && feature.properties['N. imprese'] <= 5.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 8.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -5890,7 +5885,7 @@
             }
             if (feature.properties['N. imprese'] >= 5.999900 && feature.properties['N. imprese'] <= 6.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 9.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -5906,7 +5901,7 @@
             }
             if (feature.properties['N. imprese'] >= 6.999900 && feature.properties['N. imprese'] <= 7.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 10.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -5922,7 +5917,7 @@
             }
             if (feature.properties['N. imprese'] >= 7.999900 && feature.properties['N. imprese'] <= 8.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 11.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -5938,7 +5933,7 @@
             }
             if (feature.properties['N. imprese'] >= 8.999900 && feature.properties['N. imprese'] <= 9.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 12.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -5954,7 +5949,7 @@
             }
             if (feature.properties['N. imprese'] >= 9.999900 && feature.properties['N. imprese'] <= 10.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 13.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -5970,7 +5965,7 @@
             }
             if (feature.properties['N. imprese'] >= 10.999900 && feature.properties['N. imprese'] <= 11.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 14.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -5986,7 +5981,7 @@
             }
             if (feature.properties['N. imprese'] >= 11.999900 && feature.properties['N. imprese'] <= 12.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 15.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -6002,7 +5997,7 @@
             }
             if (feature.properties['N. imprese'] >= 12.999900 && feature.properties['N. imprese'] <= 13.999900 ) {
                 return {
-                pane: 'pane_Veneto_geocoded_ai_22',
+                pane: 'pane_Veneto_22',
                 radius: 16.0,
                 opacity: 1,
                 color: 'rgba(40,110,170,1.0)',
@@ -6017,26 +6012,26 @@
             }
             }
         }
-        map.createPane('pane_Veneto_geocoded_ai_22');
-        map.getPane('pane_Veneto_geocoded_ai_22').style.zIndex = 422;
-        map.getPane('pane_Veneto_geocoded_ai_22').style['mix-blend-mode'] = 'normal';
-        var layer_Veneto_geocoded_ai_22 = new L.geoJson(json_Veneto_geocoded_ai_22, {
+        map.createPane('pane_Veneto_22');
+        map.getPane('pane_Veneto_22').style.zIndex = 422;
+        map.getPane('pane_Veneto_22').style['mix-blend-mode'] = 'normal';
+        var layer_Veneto_22 = new L.geoJson(json_Veneto_22, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Veneto_geocoded_ai_22',
-            layerName: 'layer_Veneto_geocoded_ai_22',
-            pane: 'pane_Veneto_geocoded_ai_22',
-            onEachFeature: pop_Veneto_geocoded_ai_22,
+            dataVar: 'json_Veneto_22',
+            layerName: 'layer_Veneto_22',
+            pane: 'pane_Veneto_22',
+            onEachFeature: pop_Veneto_22,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Veneto_geocoded_ai_22_0(feature));
+                return L.circleMarker(latlng, style_Veneto_22_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Veneto_geocoded_ai_22);
-        map.addLayer(layer_Veneto_geocoded_ai_22);
+        bounds_group.addLayer(layer_Veneto_22);
+        map.addLayer(layer_Veneto_22);
         const url = {"Nominatim OSM": "https://nominatim.openstreetmap.org/search?format=geojson&addressdetails=1&",
         "France BAN": "https://api-adresse.data.gouv.fr/search/?"}
         var photonControl = L.control.photon({
@@ -6091,196 +6086,15 @@
             }
         });
         setBounds();
-        var mapDiv = document.getElementById('map');
-        var row = document.createElement('div');
-        row.className="row";
-        row.id="all";
-        row.style.height = "100%";
-        var col1 = document.createElement('div');
-        col1.className="col9";
-        col1.id = "mapWindow";
-        col1.style.height = "99%";
-        col1.style.width = "80%";
-        col1.style.display = "inline-block";
-        var col2 = document.createElement('div');
-        col2.className="col3";
-        col2.id = "menu";
-        col2.style.display = "inline-block";
-        mapDiv.parentNode.insertBefore(row, mapDiv);
-        document.getElementById("all").appendChild(col1);
-        document.getElementById("all").appendChild(col2);
-        col1.appendChild(mapDiv)
-        var Filters = {"N. imprese": "int","totali_regioni_v3_imprese_100k": "real"};
-        function filterFunc() {
-          map.eachLayer(function(lyr){
-          if ("options" in lyr && "dataVar" in lyr["options"]){
-            features = this[lyr["options"]["dataVar"]].features.slice(0);
-            try{
-              for (key in Filters){
-                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
-                if (Filters[key] == "str" || Filters[key] == "bool"){
-                  var selection = [];
-                  var options = document.getElementById("sel_" + keyS).options
-                  for (var i=0; i < options.length; i++) {
-                    if (options[i].selected) selection.push(options[i].value);
-                  }
-                    try{
-                      if (key in features[0].properties){
-                        for (i = features.length - 1;
-                          i >= 0; --i){
-                          if (selection.indexOf(
-                          features[i].properties[key])<0
-                          && selection.length>0) {
-                          features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                  }
-                }
-                if (Filters[key] == "int"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (parseInt(features[i].properties[key])
-                          < sliderVals[0]
-                          || parseInt(features[i].properties[key])
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "real"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (features[i].properties[key]
-                          < sliderVals[0]
-                          || features[i].properties[key]
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "date"
-                  || Filters[key] == "datetime"
-                  || Filters[key] == "time"){
-                  try{
-                    if (key in features[0].properties){
-                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
-                      startdate = document.getElementById("dat_" +
-                        HTMLkey + "_date1").value.replace(" ", "T");
-                      enddate = document.getElementById("dat_" +
-                        HTMLkey + "_date2").value.replace(" ", "T");
-                      for (i = features.length - 1; i >= 0; --i){
-                        if (features[i].properties[key] < startdate
-                          || features[i].properties[key] > enddate){
-                          features.splice(i,1);
-                        }
-                      }
-                    }
-                  } catch(err){
-                  }
-                }
-              }
-            } catch(err){
-            }
-          this[lyr["options"]["layerName"]].clearLayers();
-          this[lyr["options"]["layerName"]].addData(features);
-          }
-          })
-        }
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_Nimprese = document.createElement("div");
-            div_Nimprese.id = "div_Nimprese";
-            div_Nimprese.className = "slider";
-            document.getElementById("menu").appendChild(div_Nimprese);
-            var lab_Nimprese = document.createElement('div');
-            lab_Nimprese.innerHTML  = 'N. imprese: <span id="val_Nimprese"></span>';
-            lab_Nimprese.className = 'filterlabel';
-            document.getElementById("menu").appendChild(lab_Nimprese);
-            var reset_Nimprese = document.createElement('div');
-            reset_Nimprese.innerHTML = 'clear filter';
-            reset_Nimprese.className = 'filterlabel';
-            lab_Nimprese.className = 'filterlabel';
-            reset_Nimprese.onclick = function() {
-                sel_Nimprese.noUiSlider.reset();
-            };
-            document.getElementById("menu").appendChild(reset_Nimprese);
-            var sel_Nimprese = document.getElementById('div_Nimprese');
-            noUiSlider.create(sel_Nimprese, {
-                connect: true,
-                start: [1, 13],
-                step: 1,
-                format: wNumb({
-                    decimals: 0,
-                    }),
-                range: {
-                min: 1,
-                max: 13
-                }
-            });
-            sel_Nimprese.noUiSlider.on('update', function (values) {
-            filterVals =[];
-            for (value in values){
-            filterVals.push(parseInt(value))
-            }
-            val_Nimprese = document.getElementById('val_Nimprese');
-            val_Nimprese.innerHTML = values.join(' - ');
-                filterFunc()
-            });
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_totali_regioni_v3_imprese_100k = document.createElement("div");
-            div_totali_regioni_v3_imprese_100k.id = "div_totali_regioni_v3_imprese_100k";
-            div_totali_regioni_v3_imprese_100k.className = "slider";
-            document.getElementById("menu").appendChild(div_totali_regioni_v3_imprese_100k);
-            var lab_totali_regioni_v3_imprese_100k = document.createElement('div');
-            lab_totali_regioni_v3_imprese_100k.innerHTML  = 'totali_regioni_v3_imprese_100k: <span id="val_totali_regioni_v3_imprese_100k"></span>';
-            lab_totali_regioni_v3_imprese_100k.className = 'filterlabel';
-            document.getElementById("menu").appendChild(lab_totali_regioni_v3_imprese_100k);
-            var reset_totali_regioni_v3_imprese_100k = document.createElement('div');
-            reset_totali_regioni_v3_imprese_100k.innerHTML = 'clear filter';
-            reset_totali_regioni_v3_imprese_100k.className = 'filterlabel';
-            lab_totali_regioni_v3_imprese_100k.className = 'filterlabel';
-            reset_totali_regioni_v3_imprese_100k.onclick = function() {
-                sel_totali_regioni_v3_imprese_100k.noUiSlider.reset();
-            };
-            document.getElementById("menu").appendChild(reset_totali_regioni_v3_imprese_100k);
-            var sel_totali_regioni_v3_imprese_100k = document.getElementById('div_totali_regioni_v3_imprese_100k');
-            noUiSlider.create(sel_totali_regioni_v3_imprese_100k, {
-                connect: true,
-                start: [0.85, 4.5],
-                range: {
-                min: 0.85,
-                max: 4.5
-                }
-            });
-            sel_totali_regioni_v3_imprese_100k.noUiSlider.on('update', function (values) {
-            val_totali_regioni_v3_imprese_100k = document.getElementById('val_totali_regioni_v3_imprese_100k');
-            val_totali_regioni_v3_imprese_100k.innerHTML = values.join(' - ');
-                filterFunc()
-            });
-        resetLabels([layer_Veneto_geocoded_ai_22]);
+        resetLabels([layer_Veneto_22]);
         map.on("zoomend", function(){
-            resetLabels([layer_Veneto_geocoded_ai_22]);
+            resetLabels([layer_Veneto_22]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_Veneto_geocoded_ai_22]);
+            resetLabels([layer_Veneto_22]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_Veneto_geocoded_ai_22]);
+            resetLabels([layer_Veneto_22]);
         });
         </script>        
     </body>
