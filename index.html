@@ -85,17 +85,6 @@
         var highlightLayer;
         function highlightFeature(e) {
             highlightLayer = e.target;
-
-            if (e.target.feature.geometry.type === 'LineString' || e.target.feature.geometry.type === 'MultiLineString') {
-              highlightLayer.setStyle({
-                color: 'rgba(255, 255, 0, 1.00)',
-              });
-            } else {
-              highlightLayer.setStyle({
-                fillColor: 'rgba(255, 255, 0, 1.00)',
-                fillOpacity: 1
-              });
-            }
             highlightLayer.openPopup();
         }
         var map = L.map('map', {
@@ -7728,22 +7717,32 @@
         });
         bounds_group.addLayer(layer_ElenchiregionaliagricolturasocialePortaliregionali2026_43);
         function pop_Agricolturasocialeperregione7CensimentoAgricolturaIstat2020_44(feature, layer) {
+            var _agriPopupTimer;
             layer.on({
-                mouseout: function(e) {
-                    for (var i in e.target._eventParents) {
-                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
-                            e.target._eventParents[i].resetStyle(e.target);
-                        }
-                    }
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
+                mouseover: function(e) {
+                    // Debounce: aspetta 200ms prima di aprire il popup
+                    // così evita lampeggi su movimenti rapidi del mouse
+                    clearTimeout(_agriPopupTimer);
+                    _agriPopupTimer = setTimeout(function() {
+                        // Apre il popup alla posizione attuale del mouse
+                        // invece del centroide del poligono (evita calcoli lenti)
+                        layer.openPopup(e.latlng);
+                    }, 200);
+                },
+                mousemove: function(e) {
+                    // Aggiorna la posizione del popup mentre il mouse si sposta
+                    if (layer.isPopupOpen()) {
+                        layer.getPopup().setLatLng(e.latlng);
                     }
                 },
-                mouseover: highlightFeature,
+                mouseout: function(e) {
+                    clearTimeout(_agriPopupTimer);
+                    layer.closePopup();
+                },
+                click: function(e) {
+                    clearTimeout(_agriPopupTimer);
+                    layer.openPopup(e.latlng);
+                },
             });
             var popupContent = '<table>\
                     <tr>\
